@@ -69,7 +69,7 @@ export default function Home() {
                 {timer.title}
               </h2>
 
-              <p className="mt-3 min-h-[72px] text-slate-400">
+              <p className="mt-3 min-h-18 text-slate-400">
                 {timer.description}
               </p>
 
@@ -79,7 +79,7 @@ export default function Home() {
                     inline-flex
                     items-center
                     rounded-full
-                    bg-gradient-to-r
+                    bg-linear-to-r
                     ${timer.color}
                     px-5
                     py-2

@@ -19,7 +19,7 @@ export default function TabataPage() {
       createTabata({
         workSeconds: 20,
         restSeconds: 10,
-        rounds: 2,
+        rounds: 8,
       }),
     [],
   );

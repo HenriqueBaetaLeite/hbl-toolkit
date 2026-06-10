@@ -16,11 +16,11 @@ export default function PomodoroPage() {
   const session = useMemo(
     () =>
       createPomodoro({
-        focusMinutes: 0.2,
-        shortBreakMinutes: 0.1,
-        longBreakMinutes: 0.15,
-        cycles: 2,
-        longBreakEvery: 2,
+        focusMinutes: 25,
+        shortBreakMinutes: 5,
+        longBreakMinutes: 15,
+        cycles: 8,
+        longBreakEvery: 4,
       }),
     [],
   );
