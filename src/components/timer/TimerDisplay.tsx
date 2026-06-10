@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import {
-  CircularProgressbar,
-  buildStyles,
-} from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 
-import 'react-circular-progressbar/dist/styles.css';
+import "react-circular-progressbar/dist/styles.css";
+
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Props {
   title: string;
@@ -22,10 +21,9 @@ export function TimerDisplay({
   workout,
   status,
   progress,
-  color = '#3b82f6',
+  color = "#3b82f6",
 }: Props) {
-  const sessionFinished =
-    status === 'finished';
+  const sessionFinished = status === "finished";
 
   return (
     <div
@@ -55,10 +53,21 @@ export function TimerDisplay({
       )}
 
       {sessionFinished ? (
-        <div className="py-12 text-center">
-          <div className="text-6xl">
-            🎉
-          </div>
+        <motion.div
+          className="py-12 text-center"
+          initial={{
+            opacity: 0,
+            scale: 0.5,
+          }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.6,
+          }}
+        >
+          <div className="text-6xl">🎉</div>
 
           <h2
             className="
@@ -70,10 +79,8 @@ export function TimerDisplay({
             {workout} Finalizado
           </h2>
 
-          <p className="mt-2 text-slate-400">
-            Excelente trabalho!
-          </p>
-        </div>
+          <p className="mt-2 text-slate-400">Excelente trabalho!</p>
+        </motion.div>
       ) : (
         <>
           <div
@@ -86,28 +93,54 @@ export function TimerDisplay({
               md:w-96
             "
           >
-            <CircularProgressbar
-              value={progress * 100}
-              text={time}
-              styles={buildStyles({
-                pathColor: color,
-                trailColor: '#1e293b',
-                textColor: '#ffffff',
-                textSize: '16px',
-              })}
-            />
+            <motion.div
+              initial={{
+                scale: 0.8,
+                opacity: 0,
+              }}
+              animate={{
+                scale: 1,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.5,
+              }}
+            >
+              <CircularProgressbar
+                value={progress * 100}
+                text={time}
+                styles={buildStyles({
+                  textColor: color,
+                  pathColor: color,
+                  trailColor: "#1e293b",
+                })}
+              />
+            </motion.div>
           </div>
 
-          <h2
-            className="
-              mt-8
-              text-center
-              text-3xl
-              font-bold
-            "
-          >
-            {title}
-          </h2>
+          <AnimatePresence mode="wait">
+            <motion.h2
+              key={title}
+              initial={{
+                opacity: 0,
+                y: 20,
+              }}
+              animate={{
+                opacity: 1,
+                y: 0,
+              }}
+              exit={{
+                opacity: 0,
+                y: -20,
+              }}
+              transition={{
+                duration: 0.3,
+              }}
+              className="mt-8 text-center text-3xl font-bold"
+            >
+              {title}
+            </motion.h2>
+          </AnimatePresence>
         </>
       )}
     </div>
