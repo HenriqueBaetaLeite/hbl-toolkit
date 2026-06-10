@@ -16,8 +16,8 @@ export default function EmomPage() {
   const session = useMemo(
     () =>
       createEmom({
-        rounds: 3,
-        intervalSeconds: 6,
+        rounds: 5,
+        intervalSeconds: 60,
       }),
     [],
   );
