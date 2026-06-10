@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 interface Props {
   onStart: () => void;
   onPause: () => void;
@@ -13,26 +15,77 @@ export function TimerControls({
 }: Props) {
   return (
     <div className="flex gap-4">
-      <button
+      <motion.button
+        whileHover={{
+          scale: 1.05,
+        }}
+        whileTap={{
+          scale: 0.95,
+        }}
         onClick={onStart}
-        className="rounded bg-green-600 px-4 py-2 cursor-pointer"
+        className="
+          rounded-xl
+          bg-green-600
+          px-6
+          py-3
+          font-semibold
+          text-white
+          shadow-lg
+          transition-colors
+          hover:bg-green-500
+          cursor-pointer
+        "
       >
-        Start
-      </button>
+        ▶ Start
+      </motion.button>
 
-      <button
+      <motion.button
+        whileHover={{
+          scale: 1.05,
+        }}
+        whileTap={{
+          scale: 0.95,
+        }}
         onClick={onPause}
-        className="rounded bg-yellow-600 px-4 py-2 cursor-pointer"
+        className="
+          rounded-xl
+          bg-yellow-600
+          px-6
+          py-3
+          font-semibold
+          text-white
+          shadow-lg
+          transition-colors
+          hover:bg-yellow-500
+          cursor-pointer
+        "
       >
-        Pause
-      </button>
+        ⏸ Pause
+      </motion.button>
 
-      <button
+      <motion.button
+        whileHover={{
+          scale: 1.05,
+        }}
+        whileTap={{
+          scale: 0.95,
+        }}
         onClick={onReset}
-        className="rounded bg-red-600 px-4 py-2 cursor-pointer"
+        className="
+          rounded-xl
+          bg-red-600
+          px-6
+          py-3
+          font-semibold
+          text-white
+          shadow-lg
+          transition-colors
+          hover:bg-red-500
+          cursor-pointer
+        "
       >
-        Reset
-      </button>
+        ↺ Reset
+      </motion.button>
     </div>
   );
 }
