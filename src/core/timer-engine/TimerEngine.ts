@@ -19,7 +19,7 @@ export type TimerEvent =
     type: 'session-finished';
   };
 
-type EventListener = (
+export type EventListener = (
   event: TimerEvent
 ) => void;
 

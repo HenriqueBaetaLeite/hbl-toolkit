@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { TimerEngine } from './TimerEngine';
+import { TimerEngine, EventListener } from './TimerEngine';
 import { TimerSession, TimerState } from './types';
 
 export function useTimerEngine(
@@ -35,20 +35,43 @@ export function useTimerEngine(
       timerEngine.destroy();
     };
   }, [session]);
-
+  
   return {
-    ...state,
+  ...state,
 
-    start: () =>
-      engineRef.current?.start(),
+  start: () =>
+    engineRef.current?.start(),
 
-    pause: () =>
-      engineRef.current?.pause(),
+  pause: () =>
+    engineRef.current?.pause(),
 
-    resume: () =>
-      engineRef.current?.resume(),
+  resume: () =>
+    engineRef.current?.resume(),
 
-    reset: () =>
-      engineRef.current?.reset(),
-  };
+  reset: () =>
+    engineRef.current?.reset(),
+
+  subscribeEvents: (
+    listener: EventListener
+  ) =>
+    engineRef.current?.subscribeEvents(
+      listener
+    ),
+};
+
+  // return {
+  //   ...state,
+
+  //   start: () =>
+  //     engineRef.current?.start(),
+
+  //   pause: () =>
+  //     engineRef.current?.pause(),
+
+  //   resume: () =>
+  //     engineRef.current?.resume(),
+
+  //   reset: () =>
+  //     engineRef.current?.reset(),
+  // };
 }

@@ -1,20 +1,26 @@
 import { useEffect } from 'react';
-import { TimerEngine } from '@/core/timer-engine/TimerEngine';
+
+import {
+  EventListener,
+} from '@/core/timer-engine/TimerEngine';
+
 import { AudioManager } from './AudioManager';
 
 const audio = new AudioManager();
 
+type SubscribeEvents = (
+  listener: EventListener
+) => (() => void) | undefined;
+
 export function useTimerAudio(
-  engine: TimerEngine | null
+  subscribeEvents?: SubscribeEvents
 ) {
   useEffect(() => {
-    if (!engine) return;
+    if (!subscribeEvents) return;
 
     const unsubscribe =
-      engine.subscribeEvents((event) => {
-
+      subscribeEvents((event) => {
         switch (event.type) {
-
           case 'countdown':
             audio.playCountdown();
             break;
@@ -30,6 +36,5 @@ export function useTimerAudio(
       });
 
     return unsubscribe;
-
-  }, [engine]);
+  }, [subscribeEvents]);
 }

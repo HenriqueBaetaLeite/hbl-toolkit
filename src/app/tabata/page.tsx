@@ -25,7 +25,6 @@ export default function TabataPage() {
   );
 
   const {
-    engine,
     status,
     currentStep,
     remainingTime,
@@ -33,9 +32,10 @@ export default function TabataPage() {
     start,
     pause,
     reset,
+    subscribeEvents,
   } = useTimerEngine(session);
 
-  useTimerAudio(engine);
+  useTimerAudio(subscribeEvents);
 
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-8 p-8">

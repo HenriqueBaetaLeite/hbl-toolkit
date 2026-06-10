@@ -26,7 +26,6 @@ export default function PomodoroPage() {
   );
 
   const {
-    engine,
     currentStep,
     remainingTime,
     progress,
@@ -34,9 +33,10 @@ export default function PomodoroPage() {
     pause,
     reset,
     status,
+    subscribeEvents,
   } = useTimerEngine(session);
 
-  useTimerAudio(engine);
+  useTimerAudio(subscribeEvents);
 
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-8 p-8">
