@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 
+import confetti from 'canvas-confetti';
+
 import {
   EventListener,
 } from '@/core/timer-engine/TimerEngine';
@@ -31,6 +33,10 @@ export function useTimerAudio(
 
           case 'session-finished':
             audio.playFinish();
+            confetti({
+              particleCount: 150,
+              spread: 100,
+            });
             break;
         }
       });

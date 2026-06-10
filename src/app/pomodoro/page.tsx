@@ -7,7 +7,6 @@ import { useTimerEngine } from "@/core/timer-engine/useTimerEngine";
 
 import { TimerDisplay } from "@/components/timer/TimerDisplay";
 import { TimerControls } from "@/components/timer/TimerControls";
-import { ProgressBar } from "@/components/timer/ProgressBar";
 
 import { formatTime } from "@/utils/formatTime";
 import { useTimerAudio } from "@/core/audio/useTimerAudio";
@@ -43,13 +42,11 @@ export default function PomodoroPage() {
       <TimerDisplay
         workout="Pomodoro"
         status={status}
-        title={currentStep?.name ?? ""}
+        title={currentStep.name}
         time={formatTime(remainingTime)}
+        progress={progress}
+        color="#ef4444"
       />
-
-      <div className="w-full">
-        <ProgressBar value={progress} />
-      </div>
 
       <TimerControls onStart={start} onPause={pause} onReset={reset} />
     </main>

@@ -9,7 +9,6 @@ import { useTimerAudio } from "@/core/audio/useTimerAudio";
 
 import { TimerDisplay } from "@/components/timer/TimerDisplay";
 import { TimerControls } from "@/components/timer/TimerControls";
-import { ProgressBar } from "@/components/timer/ProgressBar";
 
 import { formatTime } from "@/utils/formatTime";
 
@@ -42,13 +41,11 @@ export default function TabataPage() {
       <TimerDisplay
         workout="Tabata"
         status={status}
-        title={currentStep?.name ?? ""}
+        title={currentStep.name}
         time={formatTime(remainingTime)}
+        progress={progress}
+        color="#22c55e"
       />
-
-      <div className="w-full">
-        <ProgressBar value={progress} />
-      </div>
 
       <TimerControls onStart={start} onPause={pause} onReset={reset} />
     </main>

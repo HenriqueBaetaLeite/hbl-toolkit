@@ -1,10 +1,19 @@
 'use client';
 
+import {
+  CircularProgressbar,
+  buildStyles,
+} from 'react-circular-progressbar';
+
+import 'react-circular-progressbar/dist/styles.css';
+
 interface Props {
   title: string;
   time: string;
   workout?: string;
   status?: string;
+  progress: number;
+  color?: string;
 }
 
 export function TimerDisplay({
@@ -12,6 +21,8 @@ export function TimerDisplay({
   time,
   workout,
   status,
+  progress,
+  color = '#3b82f6',
 }: Props) {
   const sessionFinished =
     status === 'finished';
@@ -25,48 +36,78 @@ export function TimerDisplay({
         border-slate-800
         bg-slate-900
         p-8
-        text-center
         shadow-2xl
       "
     >
       {workout && (
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-slate-400">
+        <p
+          className="
+            text-center
+            text-sm
+            font-semibold
+            uppercase
+            tracking-widest
+            text-slate-400
+          "
+        >
           {workout}
         </p>
       )}
 
-      {!sessionFinished ? (
-        <>
-          <h2 className="text-3xl font-bold text-white">
-            {title}
-          </h2>
-
-          <div
-            className="
-              mt-8
-              text-7xl
-              font-black
-              tracking-tight
-              text-white
-              md:text-8xl
-            "
-          >
-            {time}
-          </div>
-        </>
-      ) : (
-        <>
+      {sessionFinished ? (
+        <div className="py-12 text-center">
           <div className="text-6xl">
             🎉
           </div>
 
-          <h2 className="mt-4 text-4xl font-black text-white">
-            Sessão Finalizada
+          <h2
+            className="
+              mt-4
+              text-4xl
+              font-black
+            "
+          >
+            {workout} Finalizado
           </h2>
 
           <p className="mt-2 text-slate-400">
             Excelente trabalho!
           </p>
+        </div>
+      ) : (
+        <>
+          <div
+            className="
+              mx-auto
+              mt-6
+              h-72
+              w-72
+              md:h-96
+              md:w-96
+            "
+          >
+            <CircularProgressbar
+              value={progress * 100}
+              text={time}
+              styles={buildStyles({
+                pathColor: color,
+                trailColor: '#1e293b',
+                textColor: '#ffffff',
+                textSize: '16px',
+              })}
+            />
+          </div>
+
+          <h2
+            className="
+              mt-8
+              text-center
+              text-3xl
+              font-bold
+            "
+          >
+            {title}
+          </h2>
         </>
       )}
     </div>

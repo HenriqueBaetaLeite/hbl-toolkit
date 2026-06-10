@@ -9,7 +9,6 @@ import { useTimerAudio } from "@/core/audio/useTimerAudio";
 
 import { TimerDisplay } from "@/components/timer/TimerDisplay";
 import { TimerControls } from "@/components/timer/TimerControls";
-import { ProgressBar } from "@/components/timer/ProgressBar";
 
 import { formatTime } from "@/utils/formatTime";
 
@@ -41,13 +40,11 @@ export default function EmomPage() {
       <TimerDisplay
         workout="EMOM"
         status={status}
-        title={currentStep?.name ?? ""}
+        title={currentStep.name}
         time={formatTime(remainingTime)}
+        progress={progress}
+        color="#eab308"
       />
-
-      <div className="w-full">
-        <ProgressBar value={progress} />
-      </div>
 
       <TimerControls onStart={start} onPause={pause} onReset={reset} />
     </main>
