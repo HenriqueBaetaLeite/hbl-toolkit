@@ -26,7 +26,7 @@ export interface TimerSession {
 export interface TimerState {
   status: TimerStatus;
   currentStepIndex: number;
-  currentStep: TimerStep | null;
+  currentStep: TimerStep;
   remainingTime: number;
   progress: number;
 }
